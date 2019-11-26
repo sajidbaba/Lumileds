@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% for error in errors %}
+            <div class="alert alert-danger">
+                {{ error.message }}
+            </div>
+        {% endfor %}
+
+        {% if app.user.isContributor %}
+            <div class="alert alert-info">
+                You have to be an Administrator to be able to make direct changes in the model
+            </div>
+        {% endif %}
+    </div>
+
+    <Edit
+        :is-admin="{{ app.user.isAdmin ? 'true' : 'false' }}"
+        {% if savedFilter %}:saved-filter="{{ savedFilter.editFilter|json_encode }}"{% endif %}
+    ></Edit>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/edit.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/edit.js') }}"></script>
+{% endblock %}

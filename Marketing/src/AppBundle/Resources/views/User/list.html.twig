@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'navigation.users'|trans }}</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'user.username'|trans }}</th>
+                <th scope="col">{{ 'user.email'|trans }}</th>
+                <th scope="col">{{ 'user.group'|trans }}</th>
+                <th scope="col">{{ 'user.enabled'|trans }}</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for group in user.groups %}
+                            <span class="label label-primary">{{ ('group.' ~ group.name)|trans }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if user.enabled %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            <span class="glyphicon glyphicon-remove"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('users.edit', { 'id': user.id }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('users.create') }}">Create a new user</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

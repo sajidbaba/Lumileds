@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <Reporting {% if savedFilter %}:saved-filter="{{ savedFilter.contributionFilter|json_encode }}"{% endif %}></Reporting>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/reporting.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/reporting.js') }}"></script>
+{% endblock %}

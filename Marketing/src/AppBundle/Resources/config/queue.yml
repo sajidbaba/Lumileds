@@ -1,0 +1,11 @@
+services:
+    queue.sheet_processor:
+        class: 'AppBundle\Services\Queue\SheetProcessorConsumer'
+        arguments:
+            - '@sheet_worker'
+            - '@cell_worker'
+            - '@doctrine.orm.entity_manager'
+            - '@AppBundle\Services\VersioningService'
+            - '@logger'
+            - '@Symfony\Component\Stopwatch\Stopwatch'
+            - '@AppBundle\Services\CellValidator'

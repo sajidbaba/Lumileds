@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body_class %}homepage-body{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'home.hello_user' | trans({'%username%': user.username|capitalize}) }}</h1>
+        <h2>{{ 'home.welcome_message' | trans({'%version%': version }) }}</h2>
+        <img src="{{ asset('/assets/img/home_page_image.jpg') }}" alt="" width="95%">
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

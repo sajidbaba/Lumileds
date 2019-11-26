@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <a class="btn btn-default" href="{{ path('contributions.contributor.list') }}">
+            {{ 'contribution.view.back'|trans }}
+        </a>
+
+        <Contribution-Indicator-Requests
+                :country-id="{{ contributionCountryRequest.country.id }}"
+                :contribution-country-request-id="{{ contributionCountryRequest.id }}"
+        ></Contribution-Indicator-Requests>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/contribution-contributor-country.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/contribution-contributor-country.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends '@App/Region/base.html.twig' %}
+
+{% block form %}
+    <h1>{{ 'region.create'|trans }}</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.countries) }}
+
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            $('#region_countries').select2({
+                allowClear: true
+            }).on('select2:unselecting', function() {
+                $(this).data('unselecting', true);
+            }).on('select2:opening', function(e) {
+                if ($(this).data('unselecting')) {
+                    $(this).removeData('unselecting');
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+{% endblock %}

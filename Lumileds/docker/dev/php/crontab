@@ -1,0 +1,6 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=""
+
+# each day at 9 o'clock will be send feedback request reminder
+0 9 * * * root php /opt/lumileds/bin/console app:send-feedback-reminder

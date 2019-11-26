@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'navigation.countries'|trans }}</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col-sm-9" scope="col">{{ 'country.name'|trans }}</th>
+                <th class="col-sm-2" scope="col">{{ 'country.active'|trans }}</th>
+                <th class="col-sm-1" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for country in countries %}
+                <tr>
+                    <td>{{ country.name }}</td>
+                    <td>
+                        {% if country.active %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            <span class="glyphicon glyphicon-remove"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('countries.edit', { 'id': country.id }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('countries.create') }}">{{ 'country.create_link'|trans }}</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

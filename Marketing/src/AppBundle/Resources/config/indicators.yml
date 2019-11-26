@@ -1,0 +1,71 @@
+services:
+    parc_indicator:
+        class: 'AppBundle\Indicators\Input\Parc'
+    addressable_coefficient_indicator:
+        class: 'AppBundle\Indicators\Mixed\AddressableCoefficient'
+    technology_split:
+        class: 'AppBundle\Indicators\Mixed\TechnologySplit'
+    annual_mileage_in_km:
+        class: 'AppBundle\Indicators\Input\AnnualMileageInKm'
+    average_speed_in_km_h:
+        class: 'AppBundle\Indicators\Input\AverageSpeedInKmH'
+    percentage_time_with_lights_on:
+        class: 'AppBundle\Indicators\Mixed\PercentageTimeWithLightsOn'
+    lifetime_of_bulb_in_hours:
+        class: 'AppBundle\Indicators\Input\LifetimeOfBulbInHours'
+    upgrade_take_rate:
+        class: 'AppBundle\Indicators\Mixed\UpgradeTakeRate'
+    lifetime_of_bulb_in_years:
+        class: 'AppBundle\Indicators\Output\LifetimeOfBulbInYears'
+    operation_rate:
+        class: 'AppBundle\Indicators\Output\OperationRate'
+    average_price_local_currency:
+        class: 'AppBundle\Indicators\Mixed\AveragePriceLocalCurrency'
+    average_price_usd:
+        class: 'AppBundle\Indicators\Output\AverageSalesPriceUsd'
+    price_development:
+        class: 'AppBundle\Indicators\Mixed\PriceDevelopment'
+    lumileds_volume_share:
+        class: 'AppBundle\Indicators\Output\LumiledsVolumeShare'
+    market_volume:
+        class: 'AppBundle\Indicators\Mixed\MarketVolume'
+    market_value_local_currency:
+        class: 'AppBundle\Indicators\Output\MarketValueLocalCurrency'
+    market_value_usd:
+        class: 'AppBundle\Indicators\Output\MarketValueUSD'
+    lumileds_volume:
+        class: 'AppBundle\Indicators\Input\LumiledsVolume'
+    lumileds_sales_usd:
+        class: 'AppBundle\Indicators\Input\LumiledsSalesUSD'
+    lumileds_value_share:
+        class: 'AppBundle\Indicators\Output\LumiledsValueShare'
+    usage_thousand_km:
+        class: 'AppBundle\Indicators\Input\HoursUsagePerThousandKm'
+    exchange_rate:
+        class: 'AppBundle\Indicators\Input\ExchangeRate'
+
+    indicator_registry:
+        class: 'AppBundle\Services\IndicatorService'
+        calls:
+            - [addIndicator, ['@parc_indicator']]
+            - [addIndicator, ['@addressable_coefficient_indicator']]
+            - [addIndicator, ['@technology_split']]
+            - [addIndicator, ['@annual_mileage_in_km']]
+            - [addIndicator, ['@average_speed_in_km_h']]
+            - [addIndicator, ['@percentage_time_with_lights_on']]
+            - [addIndicator, ['@lifetime_of_bulb_in_hours']]
+            - [addIndicator, ['@upgrade_take_rate']]
+            - [addIndicator, ['@lifetime_of_bulb_in_years']]
+            - [addIndicator, ['@operation_rate']]
+            - [addIndicator, ['@average_price_local_currency']]
+            - [addIndicator, ['@average_price_usd']]
+            - [addIndicator, ['@price_development']]
+            - [addIndicator, ['@lumileds_volume_share']]
+            - [addIndicator, ['@market_volume']]
+            - [addIndicator, ['@market_value_local_currency']]
+            - [addIndicator, ['@market_value_usd']]
+            - [addIndicator, ['@lumileds_volume']]
+            - [addIndicator, ['@lumileds_sales_usd']]
+            - [addIndicator, ['@lumileds_value_share']]
+            - [addIndicator, ['@usage_thousand_km']]
+            - [addIndicator, ['@exchange_rate']]

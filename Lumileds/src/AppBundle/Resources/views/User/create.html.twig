@@ -1,0 +1,43 @@
+{% extends '@App/User/base.html.twig' %}
+
+{% block form %}
+    <h1>{{ 'user.create'|trans }}</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.group) }}
+    {{ form_row(form.enabled) }}
+
+    {{ form_row(form.countries) }}
+
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            let $userGroup = $('#user_group');
+            let $userCountries = $('#user_countries');
+
+            checkCountries();
+
+            $userGroup.on('change', checkCountries);
+            $userCountries.select2();
+
+            function checkCountries(){
+                if ($userGroup.val() == '{{ contributorGroup.id }}') {
+                    $userCountries.closest('.form-group').show();
+                } else {
+                    $userCountries.closest('.form-group').hide();
+                    $userCountries.val(null).trigger('change');
+                }
+            }
+        });
+    </script>
+{% endblock %}

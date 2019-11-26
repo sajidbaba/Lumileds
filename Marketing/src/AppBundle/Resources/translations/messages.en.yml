@@ -1,0 +1,133 @@
+navigation:
+    home: Home
+    users: Manage users
+    edit: Edit
+    upload: Upload
+    export: Export
+    regions: Manage regions
+    countries: Manage markets
+    version: History
+    contribution: Contribution
+    reporting: Reporting
+
+form:
+    save: Save
+    back: Back to the list
+    delete: Delete
+
+home:
+    hello_user: Hello, %username%!
+    welcome_message: "Welcome to the Aftermarket Market Model Automatization tool (ver: %version%)!"
+user:
+    username: Username
+    email: Email
+    group: Group
+    enabled: Enabled
+    password: Password
+    countries: Markets
+    edit: Edit user
+    profile: Profile
+    create: Create user
+    flash:
+        created: User created
+        edited: User edited
+
+group:
+    viewer: Viewer
+    contributor: Contributor
+    admin: Admin
+    updoad: Upload
+
+validation:
+    cell:
+        is_decimal_greater_than_zero: 'Decimal, >0'
+        is_greater_than_zero: '>0'
+        is_greater_than_or_equals_zero: '>=0'
+        percentage: 'Percentage, >=0%, <100%'
+        percentage_greater_than_or_equal_zero: 'Percentage, >=0, <=100'
+        percentage_greater_than_zero: 'Percentage, >0, <=100'
+        not_number: 'Cell value is not a number (indicator: "%indicator%", technology: "%technology%", segment: "%segment%", country: "%country%", year: "%year%", value: "%value%")'
+        big_variation: 'Variation is too important compared to the previous year'
+    country_error: Country "%param%" is not stored in database
+    technology_error: Technology "%param%" is not stored in database
+    indicator_error: Indicator "%param%" is not stored in database
+    segment_error: Segment "%param%" is not stored in database
+    file_error: Combination of indicator "%indicator%" and technology "%technology%" is not specified for the "%country%" Market and segment "%segment%"
+    upload:
+        year_error: Year in cell %coordinates% has wrong value "%value%"
+
+upload:
+    file: File
+    submit: Upload
+
+export:
+    download: Export
+
+region:
+    name: Name
+    countries: Countries
+    create: Create region
+    create_link: Create a new region
+    edit: Edit region
+    flash:
+        created: Region created
+        edited: Region edited
+        deleted: Region deleted
+
+country:
+    name: Name
+    active: Active
+    create: Create country
+    create_link: Create a new country
+    edit: Edit country
+    flash:
+        created: Country created
+        edited: Country edited
+
+version:
+    id: ID
+    name: Name
+    created_by: Created by
+    created_at: Created at
+    approved_by: Approved by
+    approved_at: Approved at
+    previous: Previous
+    next: Next
+    flash:
+        deleted: Version deleted
+    show_all: Show all
+    show_cycle: Show cycle
+
+
+contribution:
+    list:
+        region: Region
+        deadline: Deadline
+        market: Market
+        status: Feedback Status
+        statuses:
+            0: Required
+            1: Reminded
+            2: Submitted
+            3: Approved
+    view:
+        back: Back
+    indicator:
+        title:
+            tech_split: Park Split By Technology
+            upgrade_take_rate: Upgrade Take Rate
+            price_development: Price Development
+        table:
+            hl: Headlighting
+            sl: Signaling
+            volume_share: Volume Share (Competitors vs Lumileds)
+        instructions:
+            tech_split: "Kindly provide your inputs on the overall park split by lighting technology and by function in case you disagree with the data we presently have in the model (displayed above)\n\nFor Headlighting, your inputs will be for Xenon and LED OEM only. For Signaling, your inputs are for LED OEM only. \nHalogen, Conventional and LED RF are calculated automatically. The LED RF is calculated based on the inputs you have shared on the ‘Upgrade take rate’ tab."
+            upgrade_take_rate: "You should input in the boxes your estimation of the upgrade take rate.\nFor Halogen, Xenon and Conventional, it means the % of drivers that changed their bulb even if it did not fail because they wanted better features. It does not include the drivers that bought an upgrade because their bulb had failed.\nFor LED RF, it means the % of drivers that switched from conventional technology to LED RF."
+            average_selling: "Price Index: the relative price of the competitor compared to Lumileds price for example Osram price represents 80% of Lumileds price.\nVolume Shares: the market share in volume of each competitor in %. “Other” is calculated automatically based on remaining share.\nAverage Selling Price (ASP) is in local currency (LC) and in USD.\nLumileds ASP: in all countries we refer to Philips ASP except in Colombia, Peru and ROL where it is Narva ASP.\nMarket ASP: calculated automatically based on Lumileds ASP, price index and volume share.\nPlease include in the comments box who are C2 (competitor 2) and C3 (competitor 3)."
+            price_development: "You should input in the boxes your estimation on the price development of the market year per year.\nFor price erosion use “-”, for price increase use “+”."
+
+settings:
+    labels:
+        user_reporting_from_year: User reporting allowed from year
+        user_reporting_to_year: User reporting allowed to year

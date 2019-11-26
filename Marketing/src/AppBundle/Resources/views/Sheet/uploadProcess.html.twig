@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container" id="uploads">
+        <Upload hash="{{ queueHash }}"></Upload>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/upload.js') }}"></script>
+{% endblock %}

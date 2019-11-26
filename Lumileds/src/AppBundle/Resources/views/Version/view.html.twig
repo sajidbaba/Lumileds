@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>{{ version.name }}</h1>
+            </div>
+            <div class="col-md-3">
+                <ul class="pager">
+                    {% if version.id > 1 %}
+                        <li>
+                            <a href="{{ path('version.view', {'id': version.id - 1}) }}">
+                                {{ 'version.previous'|trans }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if version.id < lastVersionId %}
+                        <li>
+                            <a href="{{ path('version.view', {'id': version.id + 1}) }}">
+                                {{ 'version.next'|trans }}
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+
+    <Versioning
+        :version="{{ version.id }}"
+    ></Versioning>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/versioning.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/versioning.js') }}"></script>
+{% endblock %}

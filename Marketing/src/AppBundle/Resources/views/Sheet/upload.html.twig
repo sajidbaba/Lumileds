@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+
+    <div style="display:none;" id="upload_warning" class="col-sm-offset-5 col-sm-2 alert alert-danger text-center export-alert" role="alert">
+        <p>
+            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+            Please wait.
+        </p>
+        <p>Upload may take a few minutes.</p>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            $('form[name=upload]').submit(function () {
+                $('#upload_warning').show();
+                $('#upload_submit').attr('disabled', true);
+                return true;
+            });
+        });
+    </script>
+{% endblock %}

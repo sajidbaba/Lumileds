@@ -1,0 +1,35 @@
+imports:
+    - { resource: queue.yml }
+    - { resource: indicators.yml }
+
+services:
+    sheet_worker:
+        class: 'AppBundle\Services\SheetWorkerService'
+        arguments:
+            - '@phpexcel'
+            - '@doctrine.orm.entity_manager'
+            - '@indicator_registry'
+            - '@old_sound_rabbit_mq.process_sheet_producer'
+            - '@AppBundle\Services\CellValidator'
+            - '@AppBundle\Services\VersioningService'
+
+    cell_worker:
+        class: 'AppBundle\Services\CellWorkerService'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@indicator_registry'
+            - '@AppBundle\Services\CellValidator'
+            - '@AppBundle\Services\VersioningService'
+
+    cell_listener:
+        class: 'AppBundle\EventListener\CellListener'
+        arguments: ['@indicator_registry']
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+
+    queue_listener:
+        class: 'AppBundle\EventListener\SheetQueueListener'
+#        arguments: ['@service_container']
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

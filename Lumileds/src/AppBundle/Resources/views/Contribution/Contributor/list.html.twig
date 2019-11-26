@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <Contribution-Requests></Contribution-Requests>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/contribution-contributor-list.js') }}"></script>
+{% endblock %}

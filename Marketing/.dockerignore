@@ -1,0 +1,6 @@
+app/supervisor/*
+node_modules
+vendor
+var/logs
+var/sessions
+var/cache

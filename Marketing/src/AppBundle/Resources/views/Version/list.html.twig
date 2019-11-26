@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>{{ 'navigation.version'|trans }}</h1>
+
+            {% if onlyCycle %}
+                <a href="{{ path('version.list', { cycle: false }) }}" class="btn btn-default pull-right">{{ 'version.show_all'|trans }}</a>
+            {% else %}
+                <a href="{{ path('version.list', { cycle: true }) }}" class="btn btn-default pull-right">{{ 'version.show_cycle'|trans }}</a>
+            {% endif %}
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'version.id'|trans }}</th>
+                <th scope="col">{{ 'version.name'|trans }}</th>
+                <th scope="col">{{ 'version.created_by'|trans }}</th>
+                <th scope="col">{{ 'version.created_at'|trans }}</th>
+                <th scope="col">{{ 'version.approved_by'|trans }}</th>
+                <th scope="col">{{ 'version.approved_at'|trans }}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for version in versions %}
+                <tr>
+                    <th scope="row">{{ version.id }}</th>
+                    <td>
+                        <a href="javascript: void(0);"
+                           class="editable-name"
+                           data-type="text"
+                           data-pk="{{ version.id }}"
+                           data-url="{{ path('api.version.edit_name', {'id': version.id}) }}"
+                           data-title="Enter name"
+                        >
+                            {{ version.name }}
+                        </a>
+                    </td>
+                    <td>{{ version.createdBy }}</td>
+                    <td>{{ version.createdAt|date }}</td>
+                    <td>{{ version.approvedBy }}</td>
+                    <td>
+                        {% if version.approvedAt %}
+                            {{ version.approvedAt|date }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('version.view', {'id': version.id}) }}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="export" data-export-url="{{ path('version.export', {'id': version.id}) }}">
+                            <span class="glyphicon glyphicon-share"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('version.delete', {'id': version.id}) }}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="loading"></div>
+
+        <div class="col-sm-offset-5 col-sm-2 alert alert-danger text-center export-alert-message" role="alert">
+            <p>
+                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                Please wait.
+            </p>
+            <p>Export may take a few minutes.</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        $(document).ready(function() {
+            $.fn.editable.defaults.mode = 'inline';
+            $('.editable-name').editable();
+
+            let loading = $(".loading");
+            let exportAlert = $(".export-alert-message");
+            $(".export").on("click", function () {
+                let url = $(this).data('export-url');
+                exportAlert.show();
+                loading.show();
+
+                $.fileDownload(url, {
+                    successCallback: function () {
+                        loading.hide();
+                        exportAlert.hide();
+                    },
+                    failCallback: function () {
+                        loading.hide();
+                        exportAlert.hide();
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

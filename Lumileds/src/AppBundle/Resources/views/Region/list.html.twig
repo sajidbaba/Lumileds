@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'navigation.regions'|trans }}</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col-sm-2" scope="col">{{ 'region.name'|trans }}</th>
+                <th class="col-sm-9" scope="col">{{ 'region.countries'|trans }}</th>
+                <th class="col-sm-1" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for region in regions %}
+                <tr>
+                    <td>{{ region.name }}</td>
+                    <td>
+                        {% for country in region.countries %}
+                            {{ country.name }}{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('regions.edit', { 'id': region.id }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('regions.create') }}">{{ 'region.create_link'|trans }}</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

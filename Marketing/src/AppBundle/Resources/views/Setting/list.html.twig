@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block _settings_settings_entry_value_label %}
+    <label>{{ ('settings.labels.' ~ form.parent.vars.value.key)|trans }}</label>
+{% endblock %}
+
+{% block body %}
+    <h1>Settings</h1>
+
+    {{ form(form) }}
+{% endblock %}

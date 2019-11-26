@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Lumileds{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        {% block navigation %}
+            {{ include('navigation.html.twig') }}
+        {% endblock %}
+
+        <div id="app" class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">
+                                {{ message|trans }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% block body %}{% endblock %}
+
+            <a
+                    href="#"
+                    id="scroll-to-top"
+                    class="btn btn-primary btn-lg scroll-to-top"
+                    role="button" title="Click to return on the top page"
+                    data-toggle="tooltip"
+                    data-placement="left"
+            >
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+        </div>
+
+        <script type="application/javascript" src="{{ asset('build/app.js') }}"></script>
+        <script type="application/javascript" src="{{ asset('build/scrollToTop.js') }}"></script>
+        <script>
+            window.isDebug = {{ app.debug ? 1 : 0 }};
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

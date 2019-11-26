@@ -1,0 +1,8 @@
+{% extends '@App/User/base.html.twig' %}
+
+{% block form %}
+    <h1>{{ 'user.profile'|trans }}</h1>
+    {{ form(edit_form) }}
+{% endblock %}
+
+{% block return %}{% endblock %}

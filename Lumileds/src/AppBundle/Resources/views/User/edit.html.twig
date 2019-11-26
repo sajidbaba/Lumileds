@@ -1,0 +1,30 @@
+{% extends '@App/User/base.html.twig' %}
+
+{% block form %}
+    <h1>{{ 'user.edit'|trans }}</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.group) }}
+    {{ form_row(form.enabled) }}
+
+    <div v-if="group == {{ contributorGroup.id }}">
+        {{ form_row(form.countries) }}
+    </div>
+
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            $('#user_countries').select2();
+        });
+    </script>
+{% endblock %}

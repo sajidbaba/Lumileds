@@ -1,0 +1,79 @@
+{% set route = app.request.attributes.get('_route') %}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="{% if route == 'homepage' %}active{% endif %}">
+                <a href="{{ path('homepage') }}">{{ 'navigation.home'|trans }}</a>
+            </li>
+
+            <li class="{% if route == 'edit' %}active{% endif %}">
+                <a href="{{ path('edit') }}">{{ 'navigation.edit'|trans }}</a>
+            </li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="{% if route starts with 'contributions' %}active{% endif %}">
+                    <a href="{{ path('contributions.admin.list') }}">{{ 'navigation.contribution'|trans }}</a>
+                </li>
+            {% elseif is_granted('ROLE_CONTRIBUTOR') %}
+                <li class="{% if route starts with 'contributions' %}active{% endif %}">
+                    <a href="{{ path('contributions.contributor.list') }}">{{ 'navigation.contribution'|trans }}</a>
+                </li>
+            {% endif %}
+
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="{% if route starts with 'sheet.upload' %}active{% endif %}">
+                    <a href="{{ path('sheet.upload') }}">{{ 'navigation.upload'|trans }}</a>
+                </li>
+
+                <li class="{% if route starts with 'version' %}active{% endif %}">
+                    <a href="{{ path('version.list', { cycle: true }) }}">{{ 'navigation.version'|trans }}</a>
+                </li>
+
+                <li class="{% if route starts with 'users' %}active{% endif %}">
+                    <a href="{{ path('users.list') }}">{{ 'navigation.users'|trans }}</a>
+                </li>
+
+                <li class="{% if route starts with 'regions' %}active{% endif %}">
+                    <a href="{{ path('regions.list') }}">{{ 'navigation.regions'|trans }}</a>
+                </li>
+
+                <li class="{% if route starts with 'countries' %}active{% endif %}">
+                    <a href="{{ path('countries.list') }}">{{ 'navigation.countries'|trans }}</a>
+                </li>
+
+                <li class="{% if route starts with 'setting' %}active{% endif %}">
+                    <a href="{{ path('setting.list') }}">Settings</a>
+                </li>
+            {% endif %}
+
+            <li class="{% if route == 'reporting' %}active{% endif %}">
+                <a href="{{ path('reporting') }}">{{ 'navigation.reporting'|trans }}</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                    {% endif %}
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ path('users.profile') }}">{{ 'user.profile'|trans }}</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

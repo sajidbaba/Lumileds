@@ -1,0 +1,20 @@
+parameters:
+    database_host: '%env(MYSQL_HOST)%'
+    database_port: '%env(MYSQL_PORT)%'
+    database_name: '%env(MYSQL_DATABASE)%'
+    database_user: '%env(MYSQL_USER)%'
+    database_password: '%env(MYSQL_PASSWORD)%'
+    rabbitmq_host: '%env(RABBITMQ_HOST)%'
+    rabbitmq_port: '%env(RABBITMQ_PORT)%'
+    rabbitmq_user: '%env(RABBITMQ_USER)%'
+    rabbitmq_password: '%env(RABBITMQ_PASSWORD)%'
+    rabbitmq_prefix: '%env(RABBITMQ_PREFIX)%'
+    rabbitmq_numproc: 10
+    rabbitmq_messages: 10
+
+    mailer_transport: '%env(MAILER_TRANSPORT)%'
+    mailer_host: '%env(MAILER_HOST)%'
+    mailer_user: '%env(MAILER_USER)%'
+    mailer_password: '%env(MAILER_PASSWORD)%'
+
+    secret: 0be0319538d3e63f7d2dc5fc011830004386345d

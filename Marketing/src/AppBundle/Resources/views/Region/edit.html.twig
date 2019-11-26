@@ -1,0 +1,36 @@
+{% extends '@App/Region/base.html.twig' %}
+
+{% block form %}
+    <h1>{{ 'region.edit'|trans }}</h1>
+
+    {{ form_start(edit_form) }}
+
+    {{ form_row(edit_form.name) }}
+    {{ form_row(edit_form.countries) }}
+
+    {{ form_row(edit_form.submit) }}
+    {{ form_end(edit_form) }}
+
+    {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger pull-right" value="{{ 'form.delete'|trans }}">
+    {{ form_end(delete_form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            $('#region_countries').select2({
+                allowClear: true
+            }).on('select2:unselecting', function() {
+                $(this).data('unselecting', true);
+            }).on('select2:opening', function(e) {
+                if ($(this).data('unselecting')) {
+                    $(this).removeData('unselecting');
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+{% endblock %}

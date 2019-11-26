@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/user.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row" id="user">
+            {% block form %}{% endblock %}
+        </div>
+
+        {% block return %}
+            <div class="row">
+                <br>
+                <a href="{{ path('users.list') }}">{{ 'form.back'|trans }}</a>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <a class="btn btn-default" href="{{ path('contributions.admin.list') }}">
+            {{ 'contribution.view.back'|trans }}
+        </a>
+    </div>
+
+    <Contribution-Request
+            :country-id="{{ contributionCountryRequest.country.id }}"
+            :is-market-approved="{{ contributionCountryRequest.status == constant('AppBundle\\Entity\\ContributionCountryRequest::STATUS_APPROVED') ? 'true' : 'false' }}"
+    ></Contribution-Request>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/contribution-admin-view.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/contribution-admin-view.js') }}"></script>
+{% endblock %}

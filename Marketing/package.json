@@ -1,0 +1,47 @@
+{
+  "name": "lumileds",
+  "version": "1.0.0",
+  "description": "Lumileds",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "bootstrap-editable": "^1.0.1",
+    "chart.js": "^2.7.1",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "floatthead": "^2.0.3",
+    "jquery": "^3.2.1",
+    "jquery-file-download": "^1.4.6",
+    "modal-vue": "0.0.3",
+    "moment": "^2.19.3",
+    "select2": "^4.0.5",
+    "v-tooltip": "^2.0.0-rc.25",
+    "vee-validate": "^2.0.0",
+    "vue": "^2.5.9",
+    "vue-bootstrap-datetimepicker": "^4.1.2",
+    "vue-chartjs": "^3.0.2",
+    "vue-element-loading": "^1.1.1",
+    "vue-resource": "^1.3.4",
+    "vue-select": "^2.4.0",
+    "vue-toasted": "^1.1.24"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.17.0",
+    "babel-preset-es2015": "^6.24.1",
+    "bootstrap-sass": "^3.3.7",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^6.0.6",
+    "vue": "^2.5.9",
+    "vue-loader": "^13.5.0",
+    "vue-template-compiler": "^2.5.9",
+    "webpack-notifier": "^1.5.0"
+  },
+  "scripts": {
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "prod": "encore production"
+  },
+  "author": "",
+  "license": "ISC"
+}
