@@ -11,7 +11,7 @@
     "chart.js": "^2.7.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "floatthead": "^2.0.3",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "jquery-file-download": "^1.4.6",
     "modal-vue": "0.0.3",
     "moment": "^2.19.3",
