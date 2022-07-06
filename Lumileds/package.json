@@ -15,7 +15,7 @@
     "jquery-file-download": "^1.4.6",
     "modal-vue": "0.0.3",
     "moment": "^2.19.3",
-    "select2": "^4.0.5",
+    "select2": "^4.0.6",
     "v-tooltip": "^2.0.0-rc.25",
     "vee-validate": "^2.0.0",
     "vue": "^2.5.9",
